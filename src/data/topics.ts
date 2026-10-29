@@ -12,11 +12,38 @@ export type TechCategory =
 export interface TechTopic {
   id: string;
   title: string;
-  category: TechCategory;
-  difficulty: "Fundamental" | "Intermediate" | "Advanced" | "Beginner" | "Reflective";
+  category: string;
+  difficulty: "Beginner" | "Intermediate" | "Advanced" | "Reflective" | "Fundamental";
   researchQuestion: string;
   keywords: string[];
 }
+
+export const STARTER_CORE_TOPICS: TechTopic[] = [
+  {
+    id: "core-001",
+    title: "Idempotency in Distributed Systems",
+    category: "Distributed Systems & Cloud",
+    difficulty: "Intermediate",
+    researchQuestion: "How do you ensure safe API retries when network partitions occur?",
+    keywords: ["idempotency", "APIs", "retries", "network-partitions"],
+  },
+  {
+    id: "core-002",
+    title: "Trade-offs of Microservices vs. Monoliths",
+    category: "System Design & Architecture",
+    difficulty: "Fundamental",
+    researchQuestion: "At what exact point of scaling should a team break a monolith apart?",
+    keywords: ["microservices", "monolith", "scaling", "complexity"],
+  },
+  {
+    id: "core-003",
+    title: "Retrieval-Augmented Generation (RAG) Architecture",
+    category: "AI Engineering & LLMs",
+    difficulty: "Advanced",
+    researchQuestion: "How do you prevent hallucination when grounding LLMs with private data?",
+    keywords: ["RAG", "vector-databases", "embeddings", "hallucination"],
+  },
+];
 
 export const CATEGORIES: TechCategory[] = [
   "Software Engineering Fundamentals",
@@ -440,4 +467,7 @@ export function generateCuratedTopics(): TechTopic[] {
   return catalog;
 }
 
-export const ALL_CURATED_TOPICS: TechTopic[] = generateCuratedTopics();
+export const ALL_CURATED_TOPICS: TechTopic[] = [
+  ...STARTER_CORE_TOPICS,
+  ...generateCuratedTopics(),
+];
