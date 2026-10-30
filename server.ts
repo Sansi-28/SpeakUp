@@ -225,6 +225,13 @@ app.post("/api/gemini/focus-music", async (req, res) => {
   }
 });
 
+/**
+ * Health check endpoint for Render and monitoring
+ */
+app.get("/api/health", (_req, res) => {
+  res.status(200).json({ status: "healthy", timestamp: new Date().toISOString() });
+});
+
 // Vite middleware mounting in development or static serving in production
 async function startServer() {
   const isProd = process.env.NODE_ENV === "production";
